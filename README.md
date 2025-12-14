@@ -1,5 +1,136 @@
-💰 AI 雲端財務管家 (Smart Finance Manager AI)一款結合 Google Gemini AI、即時匯率爬蟲 與 資料視覺化 的全功能 Python 桌面記帳軟體。📖 專案簡介 (Introduction)Smart Finance Manager AI 是為了解決現代人記帳痛點而開發的智慧型應用程式。不同於傳統記帳軟體，本專案整合了 金融科技 (FinTech) 元素，具備「抗干擾網頁爬蟲」能即時抓取匯率，並內建「雙模式 AI 引擎」，能透過雲端的大型語言模型 (LLM) 或本地端的機器學習演算法，為使用者提供專業的理財建議。✨ 核心功能 (Key Features)1. 🤖 雲端 AI 理財顧問 (Gen-AI Integration)Google Gemini API 串接：將消費數據打包傳送至雲端，AI 會扮演幽默的理財顧問，用繁體中文給出具體的省錢建議。雙模式架構 (Hybrid AI)：雲端模式：使用 Gemini Pro/Flash 模型進行語意分析。本地模式：若無網路，自動降級使用 scikit-learn 或內建數學演算法進行支出趨勢預測。2. 🌏 智慧多幣別記帳 (Multi-Currency)即時匯率換算：支援 TWD, USD, JPY。輸入外幣金額時，程式會自動爬取臺灣銀行最新匯率換算為台幣，並自動備註原幣金額（如：Steam遊戲 (USD 15.0)）。強健型爬蟲 (Robust Scraping)：使用 正規表達式 (Regex) 解析網頁，即使銀行網頁改版也能精準抓取匯率，並具備離線備援機制。3. 📊 視覺化儀表板自製繪圖引擎：內建基於 tkinter.Canvas 的圓餅圖繪製邏輯，即時分析消費佔比。完整 CRUD：支援新增、讀取、刪除紀錄，以及 CSV 報表匯出。🛠️ 使用技術 (Tech Stack)語言: Python 3介面 (GUI): tkinter, ttk網路爬蟲: requests, BeautifulSoup4, re (Regular Expression)人工智慧:雲端: Google Generative AI (Gemini API)本地: scikit-learn, numpy (Optional)資料庫: sqlite3🚀 安裝與執行 (Installation)1. 複製專案git clone [https://github.com/0guys/SmartFinanceManager_AI.py.git](https://github.com/0guys/SmartFinanceManager_AI.py.git)
-cd SmartFinanceManager_AI.py
-2. 安裝依賴套件本專案依賴以下 Python 套件，請使用 pip 安裝：pip install requests beautifulsoup4 numpy scikit-learn
-(註：若不安裝 scikit-learn 與 numpy，程式仍可透過內建演算法正常運作)3. 執行程式python SmartFinanceManager_AI.py
-📝 使用說明 (Usage)新增紀錄：輸入日期、分類、金額（可選幣別 USD/JPY），點擊「新增紀錄」。AI 分析：點擊左側「設定 Google Gemini API Key」輸入你的 Key (可免費申請)。點擊「呼叫 AI 進行分析」，等待 AI 給出建議。匯出報表：點擊「匯出 CSV 報表」即可將資料備份為 Excel 可讀格式。📸 介面預覽 (Screenshots)(建議在此處上傳程式執行截圖，例如記帳畫面、AI 對話視窗、匯率顯示等)📄 授權 (License)本專案採用 MIT License 授權，歡迎自由修改與學習使用。Developed by 0guys
+# 🧠 Smart Finance App — Python AI 雲端財務管家
+
+一套以 **Python + Tkinter** 打造的桌面記帳應用，整合 **SQLite 本地資料庫**、**臺灣銀行即時匯率爬蟲**，並支援 **Google Gemini AI（雲端）** 與 **本地 AI 分析（無 API Key 也可用）**。
+
+---
+
+## ✨ 功能特色
+
+### 📝 記帳管理
+
+* 支援 **收入 / 支出** 記錄
+* 消費分類（飲食、交通、娛樂、購物…）
+* SQLite 永久儲存
+* TreeView 即時列表顯示
+* 一鍵刪除、CSV 匯出
+
+### 💱 多幣別 + 即時匯率
+
+* 支援 **TWD / USD / JPY**
+* 自動爬取「臺灣銀行」現金賣出匯率
+* 外幣輸入自動換算為台幣並備註原幣別
+
+### 📊 視覺化分析
+
+* 支出分類圓餅圖（Canvas 繪製）
+* 即時顯示總資產（收入 − 支出）
+
+### 🤖 AI 財務分析（雙模式）
+
+#### ☁️ 雲端 AI（Google Gemini）
+
+* 使用 Gemini Flash 模型
+* 依近期消費習慣生成 **繁體中文理財建議**
+* 自動處理 API 429（配額不足）重試
+
+#### 🖥️ 本地 AI（免 API Key）
+
+* 線性 / 多項式回歸（Scikit‑learn 可選）
+* 預測「隔日支出金額」
+* 消費結構風險提示（娛樂、飲食佔比）
+
+---
+
+## 🧱 技術架構
+
+| 類別     | 使用技術                     |
+| ------ | ------------------------ |
+| GUI    | Tkinter / ttk            |
+| 資料庫    | SQLite3                  |
+| 爬蟲     | requests + BeautifulSoup |
+| AI（雲端） | Google Gemini API        |
+| AI（本地） | Python 原生 / Scikit‑learn |
+| 視覺化    | Tkinter Canvas           |
+
+---
+
+## 📦 安裝與執行
+
+### 1️⃣ 環境需求
+
+* Python **3.9+**
+* 作業系統：Windows / macOS / Linux
+
+### 2️⃣ 安裝套件
+
+```bash
+pip install requests beautifulsoup4
+
+# 若要啟用進階本地 AI（非必要）
+pip install scikit-learn numpy
+```
+
+### 3️⃣ 執行程式
+
+```bash
+python main.py
+```
+
+（首次執行會自動建立 `finance.db`）
+
+---
+
+## 🔑 Google Gemini API 設定（選用）
+
+1. 前往 Google AI Studio 建立 API Key
+2. 啟動程式後點擊：
+   **「設定 Google Gemini API Key」**
+3. 貼上 Key → 即可使用雲端 AI 分析
+
+⚠️ 若未設定 Key，系統將 **自動切換為本地 AI 模式**
+
+---
+
+## 🚨 已知限制與注意事項
+
+* Gemini **免費方案有 RPM / RPD / TPM 配額限制**
+* 若出現 `HTTP 429 RESOURCE_EXHAUSTED`：
+
+  * 等待配額重置（或稍後重試）
+  * 減少分析頻率
+* 匯率來源為公開網站，若臺銀頁面改版可能需調整解析
+
+---
+
+## 📁 專案結構（簡要）
+
+```
+.
+├─ main.py              # 主程式
+├─ finance.db           # SQLite 資料庫（自動產生）
+├─ README.md
+```
+
+---
+
+## 🛠️ 可擴充方向
+
+* 月/年報表統計
+* 收入 vs 支出趨勢圖（Matplotlib）
+* 類別預算上限警示
+* 匯率快取與離線模式
+* 多語系 UI
+
+---
+
+## 📜 License
+
+本專案為 **學習 / 個人使用** 專案，未附商業授權。
+
+---
+
+## 🙌 作者
+
+由 Python + AI 技術愛好者打造
+
+> 如果你在學習 Python、Tkinter、AI API 整合，這個專案非常適合作為完整實戰範例 🚀
