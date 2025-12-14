@@ -73,7 +73,7 @@ pip install scikit-learn numpy
 ### 3️⃣ 執行程式
 
 ```bash
-python main.py
+python SmartFinanceManager_AI.py
 ```
 
 （首次執行會自動建立 `finance.db`）
@@ -106,7 +106,7 @@ python main.py
 
 ```
 .
-├─ main.py              # 主程式
+├─ SmartFinanceManager_AI.py              # 主程式
 ├─ finance.db           # SQLite 資料庫（自動產生）
 ├─ README.md
 ```
