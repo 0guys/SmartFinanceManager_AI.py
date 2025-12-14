@@ -131,6 +131,4 @@ python main.py
 
 ## 🙌 作者
 
-由 Python + AI 技術愛好者打造
-
-> 如果你在學習 Python、Tkinter、AI API 整合，這個專案非常適合作為完整實戰範例 🚀
+由 B11307118 夏正非 打造
